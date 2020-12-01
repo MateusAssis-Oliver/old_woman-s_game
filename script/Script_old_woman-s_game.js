@@ -5,10 +5,11 @@ $(document).ready(function() {
     $(".casa").click(function() {
 
         // capturando o id da classe clicada
-
         /* id recebe a class casa como o  attr 
         que retorna o valor do elemento atribuido a ele como o id  */
         let id = $(this).attr("id")
+
+        $('#' + id).css('background', 'red')
         console.log(id);
 
     });
