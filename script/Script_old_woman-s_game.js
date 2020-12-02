@@ -2,9 +2,17 @@ function circulo(parametro) {
 
     let idDiv = '#' + parametro;
 
-    $(idDiv).append(`<div id='circulo'></div>`)
+    //controle de loop de divs desnecesarias
+    if ($(`${idDiv} div `).attr('id') === `elemento_${parametro}`) { return 0; }
+    console.log($(`${idDiv} div `).attr('id'))
+
+    console.log(` idDiv - ${idDiv}`)
+
+    //add div dentro do id 
+    $(idDiv).append(`<div id='elemento_${parametro}'> </div>`)
 
     let idDivC = '#' + $(`${idDiv} div`).attr('id')
+    console.log(` idDivC - ${idDivC}`)
 
     $(idDivC).css({
         'width': '50px',
