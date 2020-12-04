@@ -1,31 +1,39 @@
-function circulo(parametro) {
+// contante criada para agrupar as funçoes deo jogo 
+const old_woman_s_game = {
 
-    let idDiv = '#' + parametro;
+    //Simplismente add a imagem no quadro selecionado
+    addImg: (parametro, jogador) => {
 
-    //controle de loop de divs desnecesarias
-    if ($(`${idDiv} div `).attr('id') === `elemento_${parametro}`) { return 0; }
-    console.log($(`${idDiv} div `).attr('id'))
+        let idDiv = '#' + parametro;
+        let img = $(`${idDiv} img `).attr('id');
 
-    console.log(` idDiv - ${idDiv}`)
+        //controle, para evitar loops de imgs
+        if (img === `img_${parametro}`) { old_woman_s_game.removeImg(img); return 0; }
 
-    //add div dentro do id 
-    $(idDiv).append(`<div id='elemento_${parametro}'> </div>`)
+        //adiona a img na div cricada
+        $(idDiv).append(`<img src="../imgs/O.png" alt="" calss='${jogador}'id='img_${parametro}' >`)
 
-    let idDivC = '#' + $(`${idDiv} div`).attr('id')
-    console.log(` idDivC - ${idDivC}`)
+        //chamada de func para reajustar a img na div
+        old_woman_s_game.image_scaling(idDiv)
 
-    $(idDivC).css({
-        'width': '50px',
-        'height': '50px',
-        'background': 'blue',
-        'borderRadius': '1000px',
-        'margin': ' 50% auto'
-    })
+    },
+    //reescreve a escala da imagem para não utrappasar as linhas
+    image_scaling: (idDiv) => {
 
-    return 0;
+        let idImg = '#' + $(`${idDiv} img`).attr('id');
+        $(`${idImg}`).css({ 'max-height': '100%', 'max-width': '100%', 'margin-top': '50px' })
+    },
+    vezJogagdor: () => {
+
+    },
+    removeImg: (parametro) => {
+        let idImg = '#' + parametro;
+        $(idImg).remove();
+    },
+    vezJogador: () => {
+
+    }
 }
-
-
 
 $(document).ready(function() {
 
@@ -36,8 +44,8 @@ $(document).ready(function() {
         /* id recebe a class casa como o  attr 
         que retorna o valor do elemento atribuido a ele como o id  */
         let id = $(this).attr("id")
-        circulo(id)
-        console.log(id);
+        old_woman_s_game.addImg(id)
+
 
     });
 });
